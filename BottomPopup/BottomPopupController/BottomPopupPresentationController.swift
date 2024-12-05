@@ -57,6 +57,7 @@ final class BottomPopupPresentationController: UIPresentationController {
     
     @objc private func handleTap(_ tap: UITapGestureRecognizer) {
         guard attributesDelegate.popupShouldBeganDismiss else { return }
+        guard attributesDelegate.popupShouldDismissOnTap else { return }
         presentedViewController.dismiss(animated: true, completion: nil)
     }
     

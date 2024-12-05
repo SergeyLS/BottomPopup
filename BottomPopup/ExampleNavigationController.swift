@@ -14,6 +14,8 @@ class ExampleNavigationController: BottomPopupNavigationController {
     var presentDuration: Double?
     var dismissDuration: Double?
     var shouldDismissInteractivelty: Bool?
+    var shouldBeganDismiss: Bool?
+    var shouldDismissOnTap: Bool?
     
     // MARK: - BottomPopupAttributesDelegate Variables
     override var popupHeight: CGFloat { height ?? 300.0 }
@@ -22,4 +24,6 @@ class ExampleNavigationController: BottomPopupNavigationController {
     override var popupDismissDuration: Double { dismissDuration ?? 1.0 }
     override var popupShouldDismissInteractivelty: Bool { shouldDismissInteractivelty ?? true }
     override var popupDimmingViewAlpha: CGFloat { BottomPopupConstants.dimmingViewDefaultAlphaValue }
+    override var popupShouldBeganDismiss: Bool { shouldBeganDismiss ?? true }
+    override var popupShouldDismissOnTap: Bool { shouldDismissOnTap ?? true }
 }

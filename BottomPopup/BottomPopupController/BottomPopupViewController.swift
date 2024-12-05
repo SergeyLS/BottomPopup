@@ -81,4 +81,6 @@ open class BottomPopupViewController: UIViewController, BottomPopupAttributesDel
     open var popupDimmingViewAlpha: CGFloat { BottomPopupConstants.dimmingViewDefaultAlphaValue }
     open var popupShouldBeganDismiss: Bool { BottomPopupConstants.shouldBeganDismiss }
     open var popupViewAccessibilityIdentifier: String { BottomPopupConstants.defaultPopupViewAccessibilityIdentifier }
+    open var popupShouldDismissOnTap: Bool { BottomPopupConstants.dismissOnTap }
+
 }

@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var topCornerRadiusLabel: UILabel!
     @IBOutlet weak var presentDurationLabel: UILabel!
     @IBOutlet weak var dismissDurationLabel: UILabel!
+    @IBOutlet weak var shouldBeganDismissSwitch: UISwitch!
+    @IBOutlet weak var dismissOnTapSwitch: UISwitch!
     
     var height: CGFloat = 300 {
         didSet {
@@ -31,13 +33,13 @@ class ViewController: UIViewController {
         }
     }
     
-    var presentDuration: Double = 1.5 {
+    var presentDuration: Double = 0.5 {
         didSet {
             presentDurationLabel.text = String(format: "%.02f sec", presentDuration)
         }
     }
     
-    var dismissDuration: Double = 1.5 {
+    var dismissDuration: Double = 0.5 {
         didSet {
             dismissDurationLabel.text = String(format: "%.02f sec", dismissDuration)
         }
@@ -83,6 +85,8 @@ class ViewController: UIViewController {
         popupViewController.presentDuration = presentDuration
         popupViewController.dismissDuration = dismissDuration
         popupViewController.shouldDismissInteractivelty = dismissInteractivelySwitch.isOn
+        popupViewController.shouldBeganDismiss = shouldBeganDismissSwitch.isOn
+        popupViewController.shouldDismissOnTap = dismissOnTapSwitch.isOn
         popupViewController.popupDelegate = self
         present(popupViewController, animated: true, completion: nil)
     }
@@ -94,6 +98,8 @@ class ViewController: UIViewController {
         popupNavController.presentDuration = presentDuration
         popupNavController.dismissDuration = dismissDuration
         popupNavController.shouldDismissInteractivelty = dismissInteractivelySwitch.isOn
+        popupNavController.shouldBeganDismiss = shouldBeganDismissSwitch.isOn
+        popupNavController.shouldDismissOnTap = dismissOnTapSwitch.isOn
         present(popupNavController, animated: true, completion: nil)
     }
 }

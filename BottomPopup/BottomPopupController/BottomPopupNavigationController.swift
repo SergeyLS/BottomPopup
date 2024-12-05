@@ -9,6 +9,7 @@
 import UIKit
 
 open class BottomPopupNavigationController: UINavigationController, BottomPopupAttributesDelegate {
+    
     private var transitionHandler: BottomPopupTransitionHandler?
     open weak var popupDelegate: BottomPopupDelegate?
     
@@ -83,6 +84,8 @@ open class BottomPopupNavigationController: UINavigationController, BottomPopupA
     open var popupDimmingViewAlpha: CGFloat { BottomPopupConstants.dimmingViewDefaultAlphaValue }
     open var popupShouldBeganDismiss: Bool { BottomPopupConstants.shouldBeganDismiss }
     open var popupViewAccessibilityIdentifier: String { BottomPopupConstants.defaultPopupViewAccessibilityIdentifier }
+    open var popupShouldDismissOnTap: Bool { BottomPopupConstants.dismissOnTap }
+
 }
 
 extension BottomPopupNavigationController {

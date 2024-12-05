@@ -37,6 +37,7 @@ public protocol BottomPopupAttributesDelegate: class {
     var popupDimmingViewAlpha: CGFloat { get }
     var popupShouldBeganDismiss: Bool { get }
     var popupViewAccessibilityIdentifier: String { get }
+    var popupShouldDismissOnTap: Bool { get }
 }
 
 public enum BottomPopupConstants {
@@ -47,6 +48,7 @@ public enum BottomPopupConstants {
     static let defaultPresentDuration = 0.5
     static let defaultDismissDuration = 0.5
     static let dismissInteractively = true
+    static let dismissOnTap = true
     static let shouldBeganDismiss = true
     static let dimmingViewDefaultAlphaValue: CGFloat = 0.5
     static let defaultPopupViewAccessibilityIdentifier: String = "bottomPopupView"
