@@ -63,6 +63,7 @@ final class BottomPopupPresentationController: UIPresentationController {
     
     @objc private func handleSwipe(_ swipe: UISwipeGestureRecognizer) {
         guard attributesDelegate.popupShouldBeganDismiss else { return }
+        guard attributesDelegate.popupShouldDismissInteractivelty else { return }
         presentedViewController.dismiss(animated: true, completion: nil)
     }
 }
