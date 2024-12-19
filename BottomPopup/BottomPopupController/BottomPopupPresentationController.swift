@@ -36,6 +36,7 @@ final class BottomPopupPresentationController: UIPresentationController {
     }
     
     override func containerViewWillLayoutSubviews() {
+        dimmingView.frame = containerView?.bounds ?? .zero
         presentedView?.frame = frameOfPresentedViewInContainerView
     }
     
