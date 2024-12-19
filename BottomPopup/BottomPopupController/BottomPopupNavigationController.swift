@@ -33,7 +33,12 @@ open class BottomPopupNavigationController: UINavigationController, BottomPopupA
         popupDelegate?.bottomPopupViewLoaded()
         self.view.accessibilityIdentifier = popupViewAccessibilityIdentifier
     }
-    
+
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        curveTopCorners()
+    }
+
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -77,6 +82,7 @@ open class BottomPopupNavigationController: UINavigationController, BottomPopupA
     
     // MARK: - BottomPopupAttributesDelegate Variables
     open var popupHeight: CGFloat { BottomPopupConstants.defaultHeight }
+    open var popupWidth: CGFloat { BottomPopupConstants.defaultWidth }
     open var popupTopCornerRadius: CGFloat { BottomPopupConstants.defaultTopCornerRadius }
     open var popupPresentDuration: Double { BottomPopupConstants.defaultPresentDuration }
     open var popupDismissDuration: Double { BottomPopupConstants.defaultDismissDuration }

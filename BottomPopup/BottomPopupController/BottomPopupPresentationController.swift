@@ -11,10 +11,13 @@ import UIKit
 final class BottomPopupPresentationController: UIPresentationController {
     private var dimmingView: UIView!
     private var popupHeight: CGFloat
+    private var popupWidth: CGFloat
     private unowned var attributesDelegate: BottomPopupAttributesDelegate
     
     override var frameOfPresentedViewInContainerView: CGRect {
-        CGRect(origin: CGPoint(x: 0, y: UIScreen.main.bounds.size.height - popupHeight), size: CGSize(width: presentedViewController.view.frame.size.width, height: popupHeight))
+        let viewWidth = containerView?.frame.width ?? 0
+        let x = (viewWidth - popupWidth) / 2
+        return CGRect(origin: CGPoint(x: x, y: UIScreen.main.bounds.size.height - popupHeight), size: CGSize(width: popupWidth, height: popupHeight))
     }
     
     private func changeDimmingViewAlphaAlongWithAnimation(to alpha: CGFloat) {
@@ -31,17 +34,27 @@ final class BottomPopupPresentationController: UIPresentationController {
     init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, attributesDelegate: BottomPopupAttributesDelegate) {
         self.attributesDelegate = attributesDelegate
         popupHeight = attributesDelegate.popupHeight
+        popupWidth = attributesDelegate.popupWidth
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         setupDimmingView()
     }
     
-    override func containerViewWillLayoutSubviews() {
+    override func containerViewDidLayoutSubviews() {
         dimmingView.frame = containerView?.bounds ?? .zero
         presentedView?.frame = frameOfPresentedViewInContainerView
     }
     
     override func presentationTransitionWillBegin() {
         containerView?.insertSubview(dimmingView, at: 0)
+        if let containerView {
+            dimmingView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                dimmingView.topAnchor.constraint(equalTo: containerView.topAnchor),
+                dimmingView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
+                dimmingView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+                dimmingView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
+            ])
+        }
         changeDimmingViewAlphaAlongWithAnimation(to: attributesDelegate.popupDimmingViewAlpha)
     }
     
